@@ -7,3 +7,4 @@
 *implement create new cake functionality
 *implement cake list download functionality
 *add link to root page
+*reload cake list after adding a cake

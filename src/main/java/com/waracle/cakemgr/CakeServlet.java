@@ -136,10 +136,6 @@ public class CakeServlet extends HttpServlet {
     	String description = req.getParameter("description");
     	String image = req.getParameter("image");
     	
-    	resp.getWriter().println("Title = " + title);
-    	resp.getWriter().println("Description = " + description);
-    	resp.getWriter().println("Image = " + image);
-    	
     	CakeEntity cake = new CakeEntity();
     	cake.setTitle(title);
     	cake.setDescription(description);
@@ -150,6 +146,8 @@ public class CakeServlet extends HttpServlet {
     	session.save(cake);
     	session.getTransaction().commit();
         session.close();
+        
+        doGet(req, resp);
     }
 
 }
