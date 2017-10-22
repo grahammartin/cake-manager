@@ -87,20 +87,48 @@ public class CakeServlet extends HttpServlet {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<CakeEntity> list = session.createCriteria(CakeEntity.class).list();
         session.close();
-
-        resp.getWriter().println("[");
-
-        for (CakeEntity entity : list) {
-            resp.getWriter().println("\t{");
-
-            resp.getWriter().println("\t\t\"title\" : " + entity.getTitle() + ", ");
-            resp.getWriter().println("\t\t\"desc\" : " + entity.getDescription() + ",");
-            resp.getWriter().println("\t\t\"image\" : " + entity.getImage());
-
-            resp.getWriter().println("\t}");
+        
+        resp.setContentType("text/html");
+        
+        resp.getWriter().println("<html>");
+        resp.getWriter().println("<body>");
+        
+        if(!list.isEmpty()) {
+        	resp.getWriter().println("<table border=1>");
+        	
+        	resp.getWriter().println("<tr>");
+        	resp.getWriter().println("<th>Name</th>");
+        	resp.getWriter().println("<th>Description</th>");
+        	resp.getWriter().println("<th>Image</th>");
+        	resp.getWriter().println("</tr>");
+        	
+        	for (CakeEntity entity : list) {
+        		resp.getWriter().println("<tr>");
+        		resp.getWriter().println("<td>" + entity.getTitle() + "</td>");
+        		resp.getWriter().println("<td>" + entity.getDescription() + "</td>");
+        		resp.getWriter().println("<td><img src=\"" + entity.getImage() + "\" alt=\"Picture not found\" style=\"width:100px;height:100px;\"></td>");
+        		resp.getWriter().println("</tr>");
+        	}
+        	
+        	resp.getWriter().println("</table>");
         }
-
-        resp.getWriter().println("]");
+        
+        resp.getWriter().println("</body>");
+        resp.getWriter().println("</html>");
+        
+//        resp.getWriter().println("[");
+//
+//        for (CakeEntity entity : list) {
+//            resp.getWriter().println("\t{");
+//
+//            resp.getWriter().println("\t\t\"title\" : " + entity.getTitle() + ", ");
+//            resp.getWriter().println("\t\t\"desc\" : " + entity.getDescription() + ",");
+//            resp.getWriter().println("\t\t\"image\" : " + entity.getImage());
+//
+//            resp.getWriter().println("\t}");
+//        }
+//
+//        resp.getWriter().println("]");
 
     }
 
