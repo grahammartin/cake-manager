@@ -121,23 +121,11 @@ public class CakeServlet extends HttpServlet {
         resp.getWriter().println("Image URL:<input type = \"text\" name = \"image\">");
         resp.getWriter().println("<input type = \"submit\" value = \"Add new cake\" />");
         resp.getWriter().println("</form>");
+
+        resp.getWriter().println("<a href=\"http://localhost:8282/cakeDownload\">Download cakes list</a>");
         
         resp.getWriter().println("</body>");
         resp.getWriter().println("</html>");
-        
-//        resp.getWriter().println("[");
-//
-//        for (CakeEntity entity : list) {
-//            resp.getWriter().println("\t{");
-//
-//            resp.getWriter().println("\t\t\"title\" : " + entity.getTitle() + ", ");
-//            resp.getWriter().println("\t\t\"desc\" : " + entity.getDescription() + ",");
-//            resp.getWriter().println("\t\t\"image\" : " + entity.getImage());
-//
-//            resp.getWriter().println("\t}");
-//        }
-//
-//        resp.getWriter().println("]");
 
     }
     
@@ -161,7 +149,6 @@ public class CakeServlet extends HttpServlet {
     	session.beginTransaction();
     	session.save(cake);
     	session.getTransaction().commit();
-//        List<CakeEntity> list = session.createCriteria(CakeEntity.class).list();
         session.close();
     }
 
