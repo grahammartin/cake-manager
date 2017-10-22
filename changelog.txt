@@ -1,0 +1,9 @@
+*restructure java files into correct package structure
+*configure to use web-app 3.1
+*add version to jetty config
+*close hibernate connection
+*output cakes as html table rather than raw json
+*renaming database fields to applicable values
+*implement create new cake functionality
+*implement cake list download functionality
+*add link to root page
