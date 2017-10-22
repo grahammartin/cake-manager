@@ -113,6 +113,15 @@ public class CakeServlet extends HttpServlet {
         	resp.getWriter().println("</table>");
         }
         
+        resp.getWriter().println("<br>");
+        resp.getWriter().println("<b>Add new cake</b>");
+        resp.getWriter().println("<form action=\"cakes\" method=\"POST\">");
+        resp.getWriter().println("Name:<input type = \"text\" name = \"title\">");
+        resp.getWriter().println("Description:<input type = \"text\" name = \"description\">");
+        resp.getWriter().println("Image URL:<input type = \"text\" name = \"image\">");
+        resp.getWriter().println("<input type = \"submit\" value = \"Add new cake\" />");
+        resp.getWriter().println("</form>");
+        
         resp.getWriter().println("</body>");
         resp.getWriter().println("</html>");
         
@@ -130,6 +139,30 @@ public class CakeServlet extends HttpServlet {
 //
 //        resp.getWriter().println("]");
 
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	
+    	String title = req.getParameter("title");
+    	String description = req.getParameter("description");
+    	String image = req.getParameter("image");
+    	
+    	resp.getWriter().println("Title = " + title);
+    	resp.getWriter().println("Description = " + description);
+    	resp.getWriter().println("Image = " + image);
+    	
+    	CakeEntity cake = new CakeEntity();
+    	cake.setTitle(title);
+    	cake.setDescription(description);
+    	cake.setImage(image);
+    	
+    	Session session = HibernateUtil.getSessionFactory().openSession();
+    	session.beginTransaction();
+    	session.save(cake);
+    	session.getTransaction().commit();
+//        List<CakeEntity> list = session.createCriteria(CakeEntity.class).list();
+        session.close();
     }
 
 }
