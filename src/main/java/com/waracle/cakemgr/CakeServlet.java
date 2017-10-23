@@ -18,7 +18,9 @@ import java.util.List;
 @WebServlet("/cakes")
 public class CakeServlet extends HttpServlet {
 
-    @Override
+    private static final long serialVersionUID = -996367451065366250L;
+
+	@Override
     public void init() throws ServletException {
         super.init();
 
