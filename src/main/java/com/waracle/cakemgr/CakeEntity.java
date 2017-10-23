@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @org.hibernate.annotations.Entity(dynamicUpdate = true)
-@Table(name = "Cake", uniqueConstraints = {@UniqueConstraint(columnNames = "ID"), @UniqueConstraint(columnNames = "TITLE")})
+@Table(name = "Cake", uniqueConstraints = {@UniqueConstraint(columnNames = "ID")})
 public class CakeEntity implements Serializable {
 
     private static final long serialVersionUID = -1798070786993154676L;
@@ -16,7 +16,7 @@ public class CakeEntity implements Serializable {
     @Column(name = "ID", unique = true, nullable = false)
     private Integer employeeId;
 
-    @Column(name = "TITLE", unique = true, nullable = false, length = 100)
+    @Column(name = "TITLE", unique = false, nullable = false, length = 100)
     private String title;
 
     @Column(name = "DESCRIPTION", unique = false, nullable = false, length = 100)

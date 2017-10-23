@@ -9,3 +9,4 @@
 *add link to root page
 *reload cake list after adding a cake
 *generate serial id for CakeServlet
+*Allow duplicate cake names
